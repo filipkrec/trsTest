@@ -1,7 +1,7 @@
 <template>
   <v-toolbar fixed class="grey darken-2" dark>
     <v-toolbar-title class="mr-4">
-      Title
+      Stranica
     </v-toolbar-title>
     <v-toolbar-items>
       <v-btn flat dark @click="navigateTo({ name: 'Klijenti' })">

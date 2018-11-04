@@ -92,6 +92,7 @@ export default{
       this.klijent.kontakt = ""
       this.klijent.naziv = ""
       this.klijent.opis= ""
+      this.klijenti = (await KlijentService.index()).data
       } catch(err) {
         console.log(err)
       }
