@@ -50,6 +50,7 @@ export default {
       } catch (error){
         this.error = error.response.data.error
       }
+      this.$router.push("adminKlijenata")
     }
   }
 }

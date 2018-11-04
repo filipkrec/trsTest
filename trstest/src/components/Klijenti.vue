@@ -3,8 +3,24 @@
     <panel title="Klijenti">
       <div v-for="klijent in klijenti" 
       :key="klijent.id">
-      {{klijent.naziv}} - 
-      Broj Proizvoda : {{klijent.brojProizvoda}}
+      <v-layout>
+        <v-flex xs8>
+          <div class="pt-2">
+          {{klijent.naziv}} - 
+          Broj Proizvoda : {{klijent.brojProizvoda}}    
+          </div>
+          </v-flex>
+        <v-flex xs4>
+            <v-btn 
+              dark
+              class="grey darken-2"
+              @click="navigateTo({ name: 'klijenti', 
+              params: { klijentId : klijent.id } })"
+              small >
+              Pregled
+            </v-btn>
+          </v-flex>
+        </v-layout>
       </div>
     </panel>
   </v-flex>
@@ -24,7 +40,12 @@ export default {
   },
   async mounted() {
     this.klijenti = (await KlijentService.index()).data
-  }
+  },
+  methods:{
+    navigateTo(route){
+      this.$router.push(route)
+    }
+}
 }
 </script>
 <style scoped>

@@ -1,7 +1,13 @@
 import Api from '@/services/Api'
 
 export default {
-  index (credentials) {
-    return Api().get('klijenti', credentials)
-  } 
+  index () {
+    return Api().get('klijenti')
+  },
+  post (klijent) {
+    return Api().post('klijenti', klijent)
+  },
+  show (klijentId) {
+    return Api().get(`klijenti/${klijentId}`)
+  }
 }

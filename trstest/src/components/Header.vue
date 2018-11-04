@@ -4,7 +4,7 @@
       Title
     </v-toolbar-title>
     <v-toolbar-items>
-      <v-btn flat dark @click="navigateTo({ name: 'HelloWorld' })">
+      <v-btn flat dark @click="navigateTo({ name: 'Klijenti' })">
         Home     
       </v-btn>  
       <v-btn v-if="$store.state.isUserLoggedIn" flat dark @click="navigateTo({ name: 'adminKlijenata' })">

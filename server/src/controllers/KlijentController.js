@@ -18,5 +18,13 @@ module.exports = {
     } catch (err) {
       res.status(500).send({ error: 'Error while creating.' })
     }
+  },
+  async show (req, res) {
+    try {
+      const klijent = await Klijent.findById(req.params.klijentId)
+      res.send(klijent)
+    } catch (err) {
+      res.status(500).send({ error: 'Error while trying fetch.' })
+    }
   }
 }
