@@ -16,12 +16,12 @@ import KlijentService from '@/services/KlijentService'
 import Panel from '@/components/Panel'
 
 export default {
-  data(){
-    return{
+  data () {
+    return {
       klijent: null
     }
   },
-  async mounted() {
+  async mounted () {
     const klijentId = this.$store.state.route.params.klijentId
     this.klijent = (await KlijentService.show(klijentId)).data
   },
@@ -30,6 +30,5 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 </style>

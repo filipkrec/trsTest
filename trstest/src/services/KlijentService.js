@@ -9,5 +9,8 @@ export default {
   },
   show (klijentId) {
     return Api().get(`klijenti/${klijentId}`)
+  },
+  delete (klijentId) {
+    return Api().delete(`klijenti/${klijentId}`)
   }
 }

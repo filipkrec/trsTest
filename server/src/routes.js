@@ -8,4 +8,6 @@ module.exports = (app) => {
   app.get('/klijenti', KlijentController.index)
   app.post('/klijenti', KlijentController.post)
   app.get('/klijenti/:klijentId', KlijentController.show)
+  app.delete('/klijenti/:klijentId', KlijentController.delete)
+  app.post('/klijenti/:klijentId', KlijentController.post)
 }
