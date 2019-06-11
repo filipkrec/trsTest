@@ -42,7 +42,7 @@
             <v-btn
               dark
               class="grey darken-2"
-              @click= null
+              @click="hide(klijent)"
               small >
               Uredi
             </v-btn>
@@ -59,45 +59,38 @@
         </v-layout>
       </div>
     </panel>
-
-    <div id="update" v-if="!isHidden">
+    <transition name="fade" mode="out-in">
+    <div id="update" key="3" v-if="!isHidden" >
       <panel title="Uredi Klijenta">
       <v-text-field
       label="Naziv"
       required
       :rules = "[required]"
-      v-model="klijent.naziv">
+      v-model="klijentUpdate.naziv">
       </v-text-field>
       <v-text-field
       label="Kontakt"
-      v-model="klijent.kontakt">
+      v-model="klijentUpdate.kontakt">
       </v-text-field>
       <v-text-field
       label="Opis"
       multi-line
-      v-model="klijent.opis">
+      v-model="klijentUpdate.opis">
       </v-text-field>
-    <v-btn
+    <v-btn 
       dark
-      class="grey darken-2"
+      class="grey darken-2 xs-right"
+      @click="update()"
       >
       Spremi
     </v-btn>
     </panel>
-      </div>
+    </div>
+    </transition>
     </v-flex>
   </v-layout>
   </div>
 </template>
-
-<script>
-var update = new Vue({
-  el: '#update',
-  data: {
-    isHidden: true 
-  }
-})
-</script>
 
 <script>
 import Panel from '@/components/Panel'
@@ -110,7 +103,14 @@ export default{
         'kontakt': null,
         'opis': null
       },
+      klijentUpdate: {
+        'id': null,
+        'naziv': null,
+        'kontakt': null,
+        'opis': null
+      },
       klijenti: null,
+      isHidden: true,
       required: (value) => !!value || 'Obavezno polje'
     } 
   }, 
@@ -139,19 +139,56 @@ export default{
         console.log(err)
       }
     },
-    hide(){
-      
-    }
+    hide(klijent){
+      if(this.isHidden != false)
+      this.isHidden = false
 
+      this.klijentUpdate.id = klijent.id;
+      this.klijentUpdate.naziv = klijent.naziv;
+      this.klijentUpdate.opis = klijent.opis;
+      this.klijentUpdate.kontakt = klijent.kontakt;
+    },
+    update(){
+      if(this.isHidden != true)
+      this.isHidden = true
+      updateClient()
+    },
+    async updateClient(){
+    try {
+        await KlijentService.update(this.klijentUpdate)
+        this.klijentUpdate.kontakt = ""
+        this.klijentUpdate.naziv = ""
+        this.klijentUpdate.opis= ""
+        this.klijentUpdate.id = ""
+        this.klijenti = (await KlijentService.index()).data
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
   },
   components: {
     Panel
   },
 }
+
 </script>
 
 <style scoped>
 #update {
   margin-top: 15px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s
+}
+
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active in <2.1.8 */
+
+{
+  opacity: 0
 }
 </style>

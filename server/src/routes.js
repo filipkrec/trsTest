@@ -9,5 +9,5 @@ module.exports = (app) => {
   app.post('/klijenti', KlijentController.post)
   app.get('/klijenti/:klijentId', KlijentController.show)
   app.delete('/klijenti/:klijentId', KlijentController.delete)
-  app.post('/klijenti/:klijentId', KlijentController.post)
+  app.post('/klijenti/update', KlijentController.update)
 }

@@ -12,5 +12,8 @@ export default {
   },
   delete (klijentId) {
     return Api().delete(`klijenti/${klijentId}`)
+  },
+  update (klijent) {
+    return Api().update('klijenti/update', klijent)
   }
 }
