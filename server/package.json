@@ -22,7 +22,7 @@
     "cors": "^2.8.4",
     "eslint-plugin-react": "^7.11.1",
     "express": "^4.16.4",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.5",
     "sequelize": "^4.41.0",
